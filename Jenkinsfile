@@ -22,7 +22,7 @@ pipeline {
                               sshPublisherDesc(
                                   ConfigName:'Staging',
                                   sshCredenilas:[
-                                      Username:"$USERNAME"
+                                      Username:"$USERNAME",
                                       encryptedPassphrase:"$USERPASS"
                                       ],
                                   transfers:[
@@ -55,7 +55,7 @@ pipeline {
                               sshPublisherDesc(
                                   ConfigName:'Production',
                                   sshCredenilas:[
-                                      Username:"$USERNAME"
+                                      Username:"$USERNAME",
                                       encryptedPassphrase:"$USERPASS"
                                       ],
                                   transfers:[
