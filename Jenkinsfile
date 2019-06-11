@@ -14,7 +14,7 @@ pipeline {
               }
               steps
                    {
-                  withCredentilas([Username Password(CredentialId:'weblogicserver_login', UsernameVaraiable:'USERNAME',PasswordVariable:'USERPASS')]){
+                  withCredentilas([usernamePassword(CredentialId:'weblogicserver_login', UsernameVaraiable:'USERNAME',PasswordVariable:'USERPASS')]){
                       ssh Publisher(
                           failOnError: true,
                           continueOnError: false,
@@ -39,7 +39,7 @@ pipeline {
                   }
               }
               }
-               Stage('DeployToProduction){
+               Stage('DeployToProduction'){
               when {
                   branch 'master'
               }
@@ -47,7 +47,7 @@ pipeline {
                     {
                      input "Does the staging environment look ok?"
                      milestone(1)
-                     withCredentilas([Username Password(CredentialId:'weblogicserver_login', UsernameVaraiable:'USERNAME',PasswordVariable:'USERPASS')]){
+                     withCredentilas([usernamePassword(CredentialId:'weblogicserver_login', UsernameVaraiable:'USERNAME',PasswordVariable:'USERPASS')]){
                      ssh Publisher(
                                    failOnError: true,
                                    continueOnError:false,
