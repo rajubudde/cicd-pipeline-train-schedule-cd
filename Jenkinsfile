@@ -8,16 +8,16 @@ pipeline {
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
-        Stage('DeployToStaging){
+        Stage('DeployToStaging) {
               when {
                   branch 'master'
               }
-      steps
-              {
+              steps
+                   {
                   withCredentilas([Username Password(CredentialId:'weblogicserver_login', UsernameVaraiable:'USERNAME',PasswordVariable:'USERPASS')]){
                       ssh Publisher(
                           failOnError: true,
-                          ContinueOnError:false,
+                          continueOnError: false,
                           publishers:[
                               ssh Publishers Desc(
                                   ConfigName:'Staging'
@@ -43,17 +43,17 @@ pipeline {
               when {
                   branch 'master'
               }
-      steps
-              {
-                  input "Does the staging environment look ok?"
-                  milestone(1)
-                  withCredentilas([Username Password(CredentialId:'weblogicserver_login', UsernameVaraiable:'USERNAME',PasswordVariable:'USERPASS')]){
-                      ssh Publisher(
-                          failOnError: true,
-                          ContinueOnError:false,
-                          publishers:[
+               steps
+                    {
+                     input "Does the staging environment look ok?"
+                     milestone(1)
+                     withCredentilas([Username Password(CredentialId:'weblogicserver_login', UsernameVaraiable:'USERNAME',PasswordVariable:'USERPASS')]){
+                     ssh Publisher(
+                                   failOnError: true,
+                                   continueOnError:false,
+                                   publishers:[
                               ssh Publishers Desc(
-                                  ConfigName:'Staging'
+                                  ConfigName:'Production'
                                   ssh Credenilas:[
                                       Username:"$USERNAME"
                                       encryptedPassphrase:"$USERPASS"
