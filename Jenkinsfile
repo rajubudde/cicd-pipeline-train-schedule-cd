@@ -15,11 +15,11 @@ pipeline {
               steps
                    {
                   withCredentilas([usernamePassword(CredentialId:'weblogicserver_login', UsernameVaraiable:'USERNAME',PasswordVariable:'USERPASS')]){
-                      ssh Publisher(
+                      sshPublisher(
                           failOnError: true,
                           continueOnError: false,
                           publishers:[
-                              ssh Publishers Desc(
+                              sshPublisherDesc(
                                   ConfigName:'Staging'
                                   ssh Credenilas:[
                                       Username:"$USERNAME"
@@ -48,11 +48,11 @@ pipeline {
                      input "Does the staging environment look ok?"
                      milestone(1)
                      withCredentilas([usernamePassword(CredentialId:'weblogicserver_login', UsernameVaraiable:'USERNAME',PasswordVariable:'USERPASS')]){
-                     ssh Publisher(
+                       sshPublisher(
                                    failOnError: true,
                                    continueOnError:false,
                                    publishers:[
-                              ssh Publishers Desc(
+                              sshPublisherDesc(
                                   ConfigName:'Production'
                                   ssh Credenilas:[
                                       Username:"$USERNAME"
