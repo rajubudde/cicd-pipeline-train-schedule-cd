@@ -20,8 +20,8 @@ pipeline {
                           continueOnError: false,
                           publishers:[
                               sshPublisherDesc(
-                                  ConfigName:'Staging'
-                                  ssh Credenilas:[
+                                  ConfigName:'Staging',
+                                  sshCredenilas:[
                                       Username:"$USERNAME"
                                       encryptedPassphrase:"$USERPASS"
                                       ],
@@ -53,8 +53,8 @@ pipeline {
                                    continueOnError:false,
                                    publishers:[
                               sshPublisherDesc(
-                                  ConfigName:'Production'
-                                  ssh Credenilas:[
+                                  ConfigName:'Production',
+                                  sshCredenilas:[
                                       Username:"$USERNAME"
                                       encryptedPassphrase:"$USERPASS"
                                       ],
